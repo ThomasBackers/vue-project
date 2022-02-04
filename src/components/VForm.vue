@@ -10,7 +10,10 @@
       {{ heading }}
     </h3>
 
-    <VInput>
+    <VInput
+      v-for="(input, i) of inputs"
+      :key="i"
+    >
   </form>
 </template>
 
@@ -24,7 +27,8 @@ export default {
   },
   props: [
     'logo',
-    'heading'
+    'heading',
+    'inputs'
   ]
 }
 </script>
