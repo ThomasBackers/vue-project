@@ -2,7 +2,7 @@
   <form action="" method="post">
     <img
       v-if="logo"
-      src=""
+      :src="logo"
       alt=""
     >
 
