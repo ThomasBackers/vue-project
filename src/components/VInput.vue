@@ -8,7 +8,13 @@
     >
 
     <select v-else>
-      <option></option>
+      <option
+        v-for="(option, i) of options"
+        :key="i"
+        :value="option.value"
+      >
+        {{ option.content }}
+      </option>
     </select>
   </label>
 </template>
