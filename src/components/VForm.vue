@@ -1,5 +1,5 @@
 <template>
-  <form action="" method="post">
+  <form :action="action" :method="method">
     <img
       v-if="logo"
       :src="logo"
@@ -26,6 +26,8 @@ export default {
     VInput
   },
   props: [
+    'action',
+    'method',
     'logo',
     'heading',
     'inputs'
