@@ -1,5 +1,5 @@
 <template>
-  <form :action="action" :method="method">
+  <form :action="action" :method="method" @submit.prevent="handleSubmit">
     <img
       v-if="icon"
       :src="require('../assets/' + icon)"
@@ -15,8 +15,14 @@
       :key="i"
       :label="input.label"
       :type="input.type"
+      :holder="input.holder"
+      :options="input.options"
       v-model="input.value"
     />
+
+    <button>
+      submit
+    </button>
   </form>
 </template>
 
@@ -29,11 +35,25 @@ export default {
     VInput
   },
   props: {
-    action: String,
-    method: String,
+    action: {
+      type: String,
+      default: ''
+    },
+    method: {
+      type: String,
+      default: 'post'
+    },
     icon: String,
     heading: String,
-    inputs: Array
+    inputs: {
+      type: Array,
+      required: true
+    }
+  },
+  methods: {
+    handleSubmit () {
+      this.inputs.forEach(input => console.log(input.value))
+    }
   }
 }
 </script>

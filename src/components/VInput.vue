@@ -1,7 +1,15 @@
 <template>
   <label>
     {{ label }}
-    <input :type="type">
+    <input v-if="type !== 'select'"
+      :type="type"
+      v-model="inputValue"
+      :placeholder="holder"
+    >
+
+    <select v-else>
+      <option></option>
+    </select>
   </label>
 </template>
 
@@ -10,7 +18,23 @@ export default {
   name: 'VInput',
   props: {
     label: String,
-    type: String
+    type: {
+      type: String,
+      required: true
+    },
+    holder: String,
+    options: Array,
+    modelValue: String
+  },
+  computed: {
+    inputValue: {
+      get () {
+        return this.modelValue
+      },
+      set (value) {
+        this.$emit('update:modelValue', value)
+      }
+    }
   }
 }
 </script>
