@@ -1,6 +1,6 @@
 <template>
   <form action="" method="post">
-    <img src="" alt="">
+    <img v-if="logo" src="" alt="">
 
     <h3 v-if="heading">{{ heading }}</h3>
 
@@ -16,7 +16,10 @@ export default {
   components: {
     VInput
   },
-  props: ['heading']
+  props: [
+    'logo',
+    'heading'
+  ]
 }
 </script>
 
