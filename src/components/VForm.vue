@@ -1,8 +1,14 @@
 <template>
   <form action="" method="post">
-    <img v-if="logo" src="" alt="">
+    <img
+      v-if="logo"
+      src=""
+      alt=""
+    >
 
-    <h3 v-if="heading">{{ heading }}</h3>
+    <h3 v-if="heading">
+      {{ heading }}
+    </h3>
 
     <VInput>
   </form>
