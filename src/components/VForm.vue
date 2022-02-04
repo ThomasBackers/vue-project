@@ -1,9 +1,9 @@
 <template>
   <form :action="action" :method="method">
     <img
-      v-if="logo"
-      :src="logo"
-      alt=""
+      v-if="icon"
+      :src="require('../assets/' + icon)"
+      alt="form icon"
     >
 
     <h3 v-if="heading">
@@ -13,7 +13,10 @@
     <VInput
       v-for="(input, i) of inputs"
       :key="i"
-    >
+      :label="input.label"
+      :type="input.type"
+      v-model="input.value"
+    />
   </form>
 </template>
 
@@ -25,13 +28,13 @@ export default {
   components: {
     VInput
   },
-  props: [
-    'action',
-    'method',
-    'logo',
-    'heading',
-    'inputs'
-  ]
+  props: {
+    action: String,
+    method: String,
+    icon: String,
+    heading: String,
+    inputs: Array
+  }
 }
 </script>
 
