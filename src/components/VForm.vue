@@ -1,38 +1,10 @@
-<template>
-  <form :action="action" :method="method" @submit.prevent="handleSubmit">
-    <img
-      v-if="icon"
-      :src="require('../assets/' + icon)"
-      alt="form icon"
-    >
-
-    <h3 v-if="heading">
-      {{ heading }}
-    </h3>
-
-    <VInput
-      v-for="(input, i) of inputs"
-      :key="i"
-      :label="input.label"
-      :type="input.type"
-      :holder="input.holder"
-      :options="input.options"
-      v-model="input.value"
-    />
-
-    <button>
-      submit
-    </button>
-  </form>
-</template>
-
 <script>
-import VInput from '@/components/VInput.vue'
+import VFormSection from './VFormSection.vue'
 
 export default {
   name: 'VForm',
   components: {
-    VInput
+    VFormSection
   },
   props: {
     action: {
@@ -43,21 +15,52 @@ export default {
       type: String,
       default: 'post'
     },
-    icon: String,
-    heading: String,
-    inputs: {
+    onSubmit: {
+      type: Function,
+      default: () => {}
+    },
+    prevent: {
+      type: Boolean,
+      default: false
+    },
+    sections: {
       type: Array,
       required: true
-    }
-  },
-  methods: {
-    handleSubmit () {
-      this.inputs.forEach(input => console.log(input.value))
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<template>
+  <form
+    v-if="!prevent"
+    class="form"
+    :action="action"
+    :method="method"
+    @submit="onSubmit"
+  >
+    <VFormSection
+      v-for="(section, i) of sections"
+      :key="i"
+      :content="section"
+    />
+  </form>
+
+  <form
+    v-else
+    class="form"
+    :action="action"
+    :method="method"
+    @submit.prevent="onSubmit"
+  >
+    <VFormSection
+      v-for="(section, i) of sections"
+      :key="i"
+      :content="section"
+    />
+  </form>
+</template>
+
+<style>
 
 </style>

@@ -1,35 +1,3 @@
-<template>
-  <div class="home">
-    <VForm
-      icon="logo.png"
-      heading="Test"
-      :inputs="[
-        {
-          label: 'Email',
-          type: 'email'
-        },
-        {
-          label: 'Password',
-          type: 'password'
-        },
-        {
-          type: 'select',
-          options: [
-            {
-              value: 'a',
-              content: 'Option A'
-            },
-            {
-              value: 'b',
-              content: 'Option B'
-            }
-          ]
-        }
-      ]"
-    />
-  </div>
-</template>
-
 <script>
 import VForm from '@/components/VForm.vue'
 
@@ -40,3 +8,48 @@ export default {
   }
 }
 </script>
+
+<template>
+  <VForm
+    :onSubmit="() => {}"
+    :prevent="true"
+    :sections="[
+      {
+        title: 'shipping information',
+        elements: [
+          {
+            label: 'name',
+            content: [
+              {
+                holder: 'first name'
+              },
+              {
+                holder: 'last name'
+              }
+            ]
+          },
+          {
+            label: 'billing address',
+            content: [
+              {
+                holder: 'street address'
+              },
+              {
+                type: 'number',
+                holder: 'house number'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: 'billing information',
+        elements: []
+      },
+      {
+        title: 'receipt',
+        elements: []
+      }
+    ]"
+  />
+</template>
